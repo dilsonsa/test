@@ -35,11 +35,11 @@
 
 
 			var params = "nome="+nome_+"&java="+java_+"&csharp="+csharp_+"&estadoCivil="+estado_civil_+"&trabalhando="+trabalhando_;
-			var url = "/fiveware-test-web/formulario";
+			var url = "/fiveware-test/formulario";
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState == 4 && xhttp.status == 200) {
-					document.getElementById("demo").innerHTML = "CADASTRO EVETUADO";
+					document.getElementById("demo").innerHTML = xhttp.responseText;
 				
 				} else {
 					document.getElementById("demo").innerHTML = "AGUARDE";

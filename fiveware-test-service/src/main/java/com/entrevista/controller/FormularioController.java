@@ -19,12 +19,6 @@ public class FormularioController {
 
 		service.saveFormulario(formulario);
 
-		System.out.println(formulario.getNome());
-		System.out.println(formulario.getEstadoCivil());
-		System.out.println(formulario.getTrabalhando());
-		System.out.println("Java: " + formulario.getJava());
-		System.out.println("C#: " + formulario.getCsharp());
-
 		return "ok";
 	}
 

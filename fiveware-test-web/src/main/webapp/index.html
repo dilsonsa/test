@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+
+	<div id="Formulario">
+		<form name="Exemplo" method="post">
+			NOME: <input name="Campo" id="Campo" type="text" /> <br>
+			LINGUAGEM QUE DOMINA: <input type="checkbox" id="java" name="java"
+				value="java">JAVA <input type="checkbox" id="csharp"
+				name="csharp" value="csharp">C#<br> ESTADO CIVIL: <select
+				id="civil" name="civil">
+				<option value="SOLTEIRO">SOLTEIRO</option>
+				<option value="CASADO">CASADO</option>
+			</select> <br> TRABALHANDO: <input type="radio" id="trabalhando"
+				name="trabalhando" value="sim">SIM <input type="radio"
+				name="trabalhando" value="nao">NÃO <br> <br>
+		</form>
+		<button type="button" onclick="loadDoc()">ENVIAR</button>
+	</div>
+
+
+	<p id="demo"></p>
+
+
+	<script>
+		function loadDoc() {
+
+			var nome_ = document.getElementById("Campo").value;
+			var java_ = document.getElementById("java").checked;
+			var csharp_ = document.getElementById("csharp").checked;
+			var estado_civil_ = document.getElementById("civil").value;
+			var trabalhando_ = document.getElementById("trabalhando").checked;
+
+
+			var params = "nome="+nome_+"&java="+java_+"&csharp="+csharp_+"&estadoCivil="+estado_civil_+"&trabalhando="+trabalhando_;
+			var url = "/fiveware-test-web/formulario";
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					document.getElementById("demo").innerHTML = "CADASTRO EVETUADO";
+				
+				} else {
+					document.getElementById("demo").innerHTML = "AGUARDE";
+				}
+			};
+
+			xhttp.open("POST", url, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("Content-length", params.length);
+			xhttp.setRequestHeader("Connection", "close");
+			xhttp
+					.send(params);
+		}
+	</script>
+
+
+
+</body>
+</html>

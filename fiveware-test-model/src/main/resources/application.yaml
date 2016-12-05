@@ -1,0 +1,14 @@
+server:
+  context-path: /fiveware-test
+spring:
+  application:
+    name: fiveware-test
+  datasource:
+    url: jdbc:mysql://10.44.3.223:3306/fiveware
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+debug: false
+flyway:
+    enabled: "true"
+    validateOnMigrate: true

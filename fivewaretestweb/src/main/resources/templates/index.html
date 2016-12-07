@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html ng-app="cadastro">
+   <head>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+   <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="angular/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="controller/UsuarioController.js"></script>
+	<script src="service/UsuarioApi.js"></script>
+
+   </head>   
+	 <body ng-controller="crudCtrl">
+
+
+	 <div class="container-fluid">
+			 <div class="row" style="text-align:center"><h1>Cadastro</h1><hr/>
+			 </div>
+
+	    	<div class="row">
+				 <div class="col-sm-3"></div>
+				 <div class="col-sm-6" >
+
+				 	<form class="form-horizontal">
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Código</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="id" ng-model="usuario.id" disabled>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nome</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" placeholder="Entre com o nome"
+									   ng-model="usuario.userName">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="inputEmail3"
+								   placeholder="Entrar com o Email" ng-model="usuario.email">
+						  </div>
+						</div>
+
+						<fieldset class="form-group row">
+							<div ng-init="usuario.estadoCivil='masculino'"></div>
+						  <label class="col-form-legend col-sm-2">Sexo</label>
+						  <div class="col-sm-10">
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+									   ng-model="usuario.sexo" value="Masculino" checked>
+								Masculino
+							  </label>
+							</div>
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+									   ng-model="usuario.sexo" value="Feminino">
+								Feminino
+							  </label>
+							</div>
+
+
+						  </div>
+						</fieldset>
+
+						<div class="form-group row">
+							<label class="col-sm-2">Estado Civil</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="exampleSelect1" data-ng-model="usuario.estadoCivil">
+									<option>Casado(a)</option>
+									<option>Solteiro(a)</option>
+									<option>Viuvo(a)</option>
+									<option>Separado(a)</option>
+									<option>Companheiro(a)</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+						  <label class="col-sm-2">Status</label>
+						  <div class="col-sm-10">
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input class="form-check-input" type="checkbox" ng-model="usuario.status"> Ativo
+							  </label>
+							</div>
+						  </div>
+						</div>
+
+						<div class="form-group row" style="text-align:center">
+							<button type="submit" class="btn btn-primary" ng-click="saveUsuario()">Salvar</button>
+							<button type="submit" class="btn btn-primary" ng-click="clear()">Limpar</button>
+						</div>
+
+					</form>
+
+
+			<div class="row">
+					<form class="navbar-form navbar-left" >
+						<div class="form-group">
+							<label class="control-label"><b>Pesquisar:</b></label><br/>
+							<input type="text" style="width: 500px;" class="form-control" ng-model="search"
+								   placeholder="Digite a pesquisa"/>
+						</div>
+					</form>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<div class="form-group">
+
+						<div class="panel panel-default" style="height: 280px; overflow-y: auto">
+
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Email</th>
+									<th>Estado Civil</th>
+									<th>Sexo</th>
+									<th>Status</th>
+									<th width="100px">&nbsp;</th>
+									<th width="100px">&nbsp;</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="user in usuarios | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+									<td>{{user.userName}}</td>
+									<td>{{user.email}}</td>
+									<td>{{user.estadoCivil}}</td>
+									<td>{{user.sexo}}</td>
+									<td>
+										<div ng-hide="user.status">
+											Inativo
+										</div>
+										<div ng-show="user.status">
+											 Ativo
+										</div>
+									</td>
+
+									<td align='center'>
+											<button type='button' ng-click='updateUser(user)'
+													class='btn btn-xs btn-primary'><span>Alterar</span></button>
+									</td>
+									<td align='center'>
+											<button type='button' class='btn btn-xs btn-primary' ng-click='removeUsuario(user)'>
+												<span>Excluir</span>
+											</button>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<pagination previous-text="Anterior"
+											next-text="Proximo"
+											page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				 </div>
+				<div class="col-sm-3"></div>
+
+			</div></div>
+
+	 </body>
+</html>

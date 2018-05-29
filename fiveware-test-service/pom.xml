@@ -6,26 +6,28 @@
 		<artifactId>fiveware-test</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>fiveware-test-model</artifactId>
-	<name>Test Model</name>
+
+	<artifactId>fiveware-test-service</artifactId>
+	<name>Test Service</name>
 
 	<properties>
-		<fiveware.version>0.0.1-SNAPSHOT</fiveware.version>
+		<mysql.version>5.1.6</mysql.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- Mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.fiveware</groupId>
-			<artifactId>fiveware-test-service</artifactId>
+			<artifactId>fiveware-test-model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.fiveware</groupId>
-				<artifactId>fiveware-test-service</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+
 </project>

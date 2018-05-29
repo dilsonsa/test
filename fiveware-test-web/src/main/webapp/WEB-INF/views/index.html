@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+</head>
+<body>
+	<section id="main-content">
+		<section class="wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header">
+						<i class="fa fa fa-bars"></i>Cadastro Cliente
+					</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a
+							href="/">Home</a></li>
+					</ol>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="row">
+					<h4><span id = "mensagem"></span></h4>
+				</div>
+				<div class="row">
+
+					<form action=""
+						method="get">
+
+						<div class="col-lg-4">
+							<div class="form-group">
+								<label>Nome:</label> <input class="form-control"
+									name="nome" tabindex="1">
+							</div>
+							<div class="form-group">
+								<label>Tipo Logradouro:</label> <select class="form-control"
+									name="tipoLogradouro" tabindex="4">
+									<option>Rua</option>
+									<option>Avenida</option>
+									<option>Travessa</option>
+									<option>Viela</option>
+									<option>Praça</option>
+									<option>Outros</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Bairro:</label> <input class="form-control"
+									name="bairro" tabindex="7">
+							</div>
+							<div class="col-lg-5">
+								<input type="submit" class=" form-control btn btn-success"
+									value="Grava" onclick="cadastraAjax();">
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="form-group">
+								<label>Telefone celular:</label> <input class="form-control"
+									type="tel" id="celularNumero" tabindex="2">
+							</div>
+							<div class="form-group">
+								<label>Logradouro:</label> <input class="form-control"
+									name="logradouro" tabindex="5">
+							</div>
+							<div class="form-group">
+								<label>Cidade:</label> <input class="form-control"
+									name="cidade" tabindex="8">
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="form-group">
+								<label>Telefone Fixo:</label> <input class="form-control"
+									type="tel" id="numero" tabindex="3">
+							</div>
+							<div class="form-group">
+								<label>Numero:</label> <input class="form-control"
+									name="numero" tabindex="6">
+							</div>
+							<div class="form-group">
+								<label>Estado:</label> <input class="form-control"
+									name="estado" tabindex="9">
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+		</section>
+	</section>
+	<script type="text/javascript" src="resources/js/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/js/org.fiveware.js"></script>
+</body>
+</html>
